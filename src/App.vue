@@ -1,81 +1,131 @@
-<script setup>
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
-</script>
-
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
+    <div class="container" v-cloak>
+        <div class="card">
+            <div class="card-heading">
+                <p>Advice {{ adviceNumber }}</p>
+            </div>
+            <div class="card-text">
+                <p>{{ advice }}</p>
+            </div>
 
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
+            <div class="icon-divide">
+                <img src="./assets/pattern-divider-desktop.svg" alt="" />
+            </div>
+
+            <div class="dice-icon-container">
+                <img src="./assets/icon-dice.svg" alt="" />
+            </div>
+        </div>
     </div>
-  </header>
-
-  <main>
-    <TheWelcome />
-  </main>
 </template>
 
-<style>
-@import './assets/base.css';
+<script>
+import axios from "axios";
 
-#app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+export default {
+    name: "Advice generator app",
+    data() {
+        return {
+            adviceText: "",
+            adviceNo: "",
+        };
+    },
 
-  font-weight: normal;
+    computed: {
+        advice() {
+            return "“" + this.adviceText + "”";
+        },
+        adviceNumber() {
+            return "#" + this.adviceNo;
+        },
+    },
+    async mounted() {
+        const response = await axios.get("https://api.adviceslip.com/advice");
+        this.adviceText = response.data.slip.advice;
+        this.adviceNo = response.data.slip.id;
+    },
+};
+</script>
+
+<style lang="scss">
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap");
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-header {
-  line-height: 1.5;
-}
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-a,
-.green {
-  text-decoration: none;
-  color: hsla(160, 100%, 37%, 1);
-  transition: 0.4s;
-}
-
-@media (hover: hover) {
-  a:hover {
-    background-color: hsla(160, 100%, 37%, 0.2);
-  }
-}
-
-@media (min-width: 1024px) {
-  body {
+body {
+    width: 100%;
+    height: 100vh;
+    background-color: #202632;
     display: flex;
-    place-items: center;
-  }
+    align-items: center;
+    justify-content: center;
+    font-family: "Manrope", sans-serif;
+}
 
-  #app {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding: 0 2rem;
-  }
+[v-cloak] {
+    display: none;
+}
 
-  header {
+.card {
+    width: 500px;
+    min-height: 100px;
+    background-color: #313a49;
     display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 55px;
+    border-radius: 15px;
+    position: relative;
 
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
+    .card-heading {
+        p {
+            color: hsl(150, 100%, 66%);
+            font-weight: 800;
+            font-size: 12px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+    }
 
-  .logo {
-    margin: 0 2rem 0 0;
-  }
+    .card-text {
+        color: hsl(193, 38%, 86%);
+        margin: 35px 0;
+        font-size: 28px;
+        font-weight: 800;
+    }
+
+    .icon-divide {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: row;
+    }
+
+    .dice-icon-container {
+        position: absolute;
+        bottom: 0;
+        // transform: translate(-50%, 50%);
+        transform: translateY(50%);
+        width: 35px;
+        height: 35px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: hsl(150, 100%, 66%);
+        padding: 28px;
+        border-radius: 50%;
+        cursor: pointer;
+        transition: 0.5s;
+    }
+
+    .dice-icon-container:hover {
+        box-shadow: 0px 0px 40px hsl(150, 100%, 66%);
+    }
 }
 </style>

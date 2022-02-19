@@ -12,7 +12,7 @@
                 <img src="./assets/pattern-divider-desktop.svg" alt="" />
             </div>
 
-            <div class="dice-icon-container">
+            <div class="dice-icon-container" @click="refresh">
                 <img src="./assets/icon-dice.svg" alt="" />
             </div>
         </div>
@@ -44,6 +44,12 @@ export default {
         this.adviceText = response.data.slip.advice;
         this.adviceNo = response.data.slip.id;
     },
+
+    methods: {
+        refresh() {
+            window.location.reload();
+        },
+    },
 };
 </script>
 
@@ -58,7 +64,7 @@ export default {
 
 body {
     width: 100%;
-    height: 100vh;
+    min-height: 100vh;
     background-color: #202632;
     display: flex;
     align-items: center;
@@ -126,6 +132,20 @@ body {
 
     .dice-icon-container:hover {
         box-shadow: 0px 0px 40px hsl(150, 100%, 66%);
+    }
+}
+
+@media (max-width: 580px) {
+    body {
+        // max-height: 100%;
+        // padding: 40px;
+    }
+    // .container {
+    //     padding: 40px;
+    // }
+    .card {
+        // min-width: 250px;
+        width: 250px;
     }
 }
 </style>

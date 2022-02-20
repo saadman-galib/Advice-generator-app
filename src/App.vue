@@ -12,7 +12,7 @@
                 <img src="./assets/pattern-divider-desktop.svg" alt="" />
             </div>
 
-            <div class="dice-icon-container" @click="refresh">
+            <div class="dice-icon-container" @click="generateQuote">
                 <img src="./assets/icon-dice.svg" alt="" />
             </div>
         </div>
@@ -46,8 +46,12 @@ export default {
     },
 
     methods: {
-        refresh() {
-            window.location.reload();
+        async generateQuote() {
+            const response = await axios.get(
+                "https://api.adviceslip.com/advice"
+            );
+            this.adviceText = response.data.slip.advice;
+            this.adviceNo = response.data.slip.id;
         },
     },
 };

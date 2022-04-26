@@ -9,11 +9,11 @@
             </div>
 
             <div class="icon-divide">
-                <img src="./assets/pattern-divider-desktop.svg" alt="" />
+                <img v-bind:src="dividerImg" alt="">
             </div>
 
             <div class="dice-icon-container" @click="generateQuote">
-                <img src="./assets/icon-dice.svg" alt="" />
+                <img src="/assets/icon-dice.svg" alt="" />
             </div>
         </div>
     </div>
@@ -28,6 +28,7 @@ export default {
         return {
             adviceText: "",
             adviceNo: "",
+            dividerImg: "/assets/pattern-divider-desktop.svg",
         };
     },
 

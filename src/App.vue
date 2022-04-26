@@ -13,7 +13,13 @@
             </div>
 
             <div class="dice-icon-container" @click="generateQuote">
-                <img src="/assets/icon-dice.svg" alt="" />
+                <img
+                    src="/assets/icon-dice.svg"
+                    alt=""
+                    @click="turnAround"
+                    class="dice-img"
+                    :style="{ 'transform': 'rotate('+ turn + 'deg)' }"
+                />
             </div>
         </div>
     </div>
@@ -33,6 +39,7 @@ export default {
                 width: 0,
                 height: 0,
             },
+            turn: 1080,
         };
     },
 
@@ -81,6 +88,10 @@ export default {
             this.window.width = window.innerWidth;
             this.window.height = window.innerHeight;
         },
+
+        turnAround(){
+            this.turn = this.turn + 1080;
+        }
     },
 };
 </script>
@@ -165,6 +176,11 @@ body {
     .dice-icon-container:hover {
         box-shadow: 0px 0px 40px hsl(150, 100%, 66%);
     }
+    
+    .dice-icon-container:hover img{
+        transition: 2s;
+        // transform: rotate(1080deg);
+    }
 }
 
 @media (max-width: 580px) {
@@ -213,7 +229,8 @@ body {
     .container {
         padding: 2px;
     }
-    .card{
-    max-width: 295px;}
+    .card {
+        max-width: 295px;
+    }
 }
 </style>

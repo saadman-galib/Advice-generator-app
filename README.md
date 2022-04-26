@@ -1,29 +1,54 @@
-# Advice generator app
+<h1 align="center">Advice Generator App</h1>
 
-This template should help get you started developing with Vue 3 in Vite.
+## Table of Contents
 
-## Recommended IDE Setup
+- [Overview](#overview)
+  - [Built With](#built-with)
+- [How to use](#how-to-use)
+- [Acknowledgements](#acknowledgements)
+- [Credit](#credit)
+- [Contact](#contact)
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.vscode-typescript-vue-plugin).
+## Overview
 
-## Customize configuration
+![screenshot](./public/assets/README.png)
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
 
-## Project Setup
 
-```sh
+## Built With
+
+- [Vue JS](#built-with)
+
+## How To Use
+
+To clone and run this application, you'll need [Git](https://git-scm.com) installed on your computer. From your command line:
+## Clone this repository
+```bash
+git clone https://github.com/saadman-galib/Advice-generator-app.git
+```
+## Install dependencies
+```bash
 npm install
 ```
-
-### Compile and Hot-Reload for Development
-
-```sh
+## Run the app
+```bash
 npm run dev
 ```
 
-### Compile and Minify for Production
 
-```sh
-npm run build
-```
+## Acknowledgements
+
+- Using api in vue
+- Vue Style Binding
+- Vue img src binding
+- Working with browser width
+- async in vue 
+
+## Credit
+- This is a challange from [Frontend Mentor](https://www.frontendmentor.io/)
+
+## Contact
+
+- GitHub [@saadman-galib](https://www.github.com/saadman-galib)
+- Twitter [@GalibSaadman](https://www.twitter.com/GalibSaadman)
+- Facebok Page [@Saadman Codes](https://www.facebook.com/saadman.codes/)

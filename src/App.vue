@@ -179,7 +179,6 @@ body {
     
     .dice-icon-container:hover img{
         transition: 2s;
-        // transform: rotate(1080deg);
     }
 }
 

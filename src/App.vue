@@ -9,7 +9,7 @@
             </div>
 
             <div class="icon-divide">
-                <img v-bind:src="dividerImg" alt="">
+                <img v-bind:src="dividerImg" alt="" />
             </div>
 
             <div class="dice-icon-container" @click="generateQuote">
@@ -29,7 +29,20 @@ export default {
             adviceText: "",
             adviceNo: "",
             dividerImg: "/assets/pattern-divider-desktop.svg",
+            window: {
+                width: 0,
+                height: 0,
+            },
         };
+    },
+
+    created() {
+        window.addEventListener("resize", this.handleResize);
+        this.handleResize();
+    },
+
+    destroyed() {
+        window.removeEventListener("resize", this.handleResize);
     },
 
     computed: {
@@ -44,6 +57,15 @@ export default {
         const response = await axios.get("https://api.adviceslip.com/advice");
         this.adviceText = response.data.slip.advice;
         this.adviceNo = response.data.slip.id;
+
+        console.log(this.window.width);
+        console.log(typeof this.window.height);
+
+        if (this.window.width <= 580) {
+            this.dividerImg = "/assets/pattern-divider-mobile.svg";
+        } else {
+            this.dividerImg = "/assets/pattern-divider-desktop.svg";
+        }
     },
 
     methods: {
@@ -53,6 +75,11 @@ export default {
             );
             this.adviceText = response.data.slip.advice;
             this.adviceNo = response.data.slip.id;
+        },
+
+        handleResize() {
+            this.window.width = window.innerWidth;
+            this.window.height = window.innerHeight;
         },
     },
 };
@@ -144,13 +171,49 @@ body {
     body {
         // max-height: 100%;
         // padding: 40px;
+        width: 100%;
+        height: auto;
+        // margin: auto;
+        padding: auto;
     }
-    // .container {
-    //     padding: 40px;
-    // }
+    .container {
+        padding: 25px;
+        margin: auto;
+        width: 100%;
+    }
     .card {
         // min-width: 250px;
-        width: 250px;
+        max-width: 450px;
+        margin-left: auto;
     }
+}
+
+@media (max-width: 500px) {
+    .card {
+        max-width: 400px;
+    }
+}
+
+@media (max-width: 450px) {
+    .card {
+        max-width: 350px;
+    }
+}
+
+@media (max-width: 400px) {
+    .container {
+        padding: 10px;
+    }
+    .card {
+        max-width: 300px;
+    }
+}
+
+@media (max-width: 320px) {
+    .container {
+        padding: 2px;
+    }
+    .card{
+    max-width: 295px;}
 }
 </style>

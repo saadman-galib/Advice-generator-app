@@ -16,9 +16,8 @@
                 <img
                     src="/assets/icon-dice.svg"
                     alt=""
-                    @click="turnAround"
                     class="dice-img"
-                    :style="{ 'transform': 'rotate('+ turn + 'deg)' }"
+                    :style="{ transform: 'rotate(' + turn + 'deg)' }"
                 />
             </div>
         </div>
@@ -77,6 +76,8 @@ export default {
 
     methods: {
         async generateQuote() {
+            this.turn = this.turn + 1080;
+
             const response = await axios.get(
                 "https://api.adviceslip.com/advice"
             );
@@ -89,9 +90,9 @@ export default {
             this.window.height = window.innerHeight;
         },
 
-        turnAround(){
-            this.turn = this.turn + 1080;
-        }
+        // turnAround(){
+        //     this.turn = this.turn + 1080;
+        // }
     },
 };
 </script>
@@ -176,8 +177,8 @@ body {
     .dice-icon-container:hover {
         box-shadow: 0px 0px 40px hsl(150, 100%, 66%);
     }
-    
-    .dice-icon-container:hover img{
+
+    .dice-icon-container:hover img {
         transition: 2s;
     }
 }

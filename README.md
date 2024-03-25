@@ -51,4 +51,3 @@ npm run dev
 
 - GitHub [@saadman-galib](https://www.github.com/saadman-galib)
 - Twitter [@GalibSaadman](https://www.twitter.com/GalibSaadman)
-- Facebok Page [@Saadman Codes](https://www.facebook.com/saadman.codes/)
